@@ -1,0 +1,745 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sjb_androidModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="addressmaster">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompleteAddress" Type="varchar" MaxLength="500" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="20" />
+          <Property Name="LandMark" Type="varchar" MaxLength="200" />
+          <Property Name="LoginID" Type="int" />
+          <Property Name="LocalityId" Type="int" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="categorymaster">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="100" />
+          <Property Name="StoreId" Type="int" />
+          <Property Name="MenuId" Type="int" />
+          <Property Name="CategoryDescription" Type="varchar" MaxLength="300" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="citymaster">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="varchar" MaxLength="150" />
+          <Property Name="StateId" Type="int" />
+        </EntityType>
+        <EntityType Name="localitymaster">
+          <Key>
+            <PropertyRef Name="LocalityId" />
+          </Key>
+          <Property Name="LocalityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocalityName" Type="varchar" MaxLength="100" />
+          <Property Name="StoreId1" Type="int" />
+          <Property Name="StoreId2" Type="int" />
+          <Property Name="StoreId3" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="menumaster">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuName" Type="varchar" MaxLength="100" />
+          <Property Name="MenuPrice" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="StoreId" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="menusetupmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menuid" Type="int" />
+          <Property Name="categoryid" Type="int" />
+          <Property Name="Productid" Type="int" />
+          <Property Name="createdon" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="notificationmaster">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotificationMessage" Type="varchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="IsDeleted" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="orderdetails">
+          <Key>
+            <PropertyRef Name="OrderDetailsId" />
+          </Key>
+          <Property Name="OrderDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderNumber" Type="varchar" MaxLength="12" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Quantity" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="ordermaster">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderNumber" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="StoreId" Type="int" />
+          <Property Name="LoginId" Type="int" />
+          <Property Name="AddressId" Type="int" />
+          <Property Name="OrderStatusId" Type="int" />
+          <Property Name="TotalPrice" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="SpecialDiscount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="GrandTotal" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Discount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="NetAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="SubTotal" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="TotalGST" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="TotalDeliveryCharge" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="TranactionId" Type="varchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="orderstatusmaster">
+          <Key>
+            <PropertyRef Name="OrderStatusId" />
+          </Key>
+          <Property Name="OrderStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderStatus" Type="varchar" MaxLength="45" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="productmaster">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="200" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="UnitPrice" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="GST" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Discount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="TaxType" Type="varchar" MaxLength="45" />
+          <Property Name="UOM" Type="varchar" MaxLength="45" />
+          <Property Name="HSN" Type="varchar" MaxLength="45" />
+          <Property Name="SweetsReset" Type="varchar" MaxLength="45" />
+          <Property Name="ProductDetails" Type="varchar" MaxLength="45" />
+          <Property Name="DeliveryCharge" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Lock" Type="varchar" MaxLength="1" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="promocodemaster">
+          <Key>
+            <PropertyRef Name="PromoCodeId" />
+          </Key>
+          <Property Name="PromoCodeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PromoCode" Type="varchar" MaxLength="45" />
+          <Property Name="Discount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="LoginId" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="registrationmaster">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="LoginID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" />
+          <Property Name="EmailID" Type="varchar" MaxLength="100" />
+          <Property Name="Role" Type="int" />
+          <Property Name="OTP" Type="varchar" MaxLength="10" />
+          <Property Name="ProfilePictureURL" Type="varchar" MaxLength="300" />
+          <Property Name="FavouriteStoreId" Type="int" />
+          <Property Name="FbToken" Type="varchar" MaxLength="500" />
+          <Property Name="DeviceId" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="statemaster">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="storemaster">
+          <Key>
+            <PropertyRef Name="StoreId" />
+          </Key>
+          <Property Name="StoreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreName" Type="varchar" MaxLength="45" />
+          <Property Name="StorePhoneNumber" Type="varchar" MaxLength="45" />
+          <Property Name="StoreEmailId" Type="varchar" MaxLength="45" />
+          <Property Name="StoreAddress" Type="varchar" MaxLength="45" />
+          <Property Name="LocalityId" Type="int" />
+          <Property Name="OpeningTime" Type="datetime" Precision="0" />
+          <Property Name="ClosingTime" Type="datetime" Precision="0" />
+          <Property Name="StoreStatus" Type="varchar" MaxLength="1" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="transactionmaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginId" Type="int" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="OrderNumber" Type="varchar" MaxLength="45" />
+          <Property Name="StoreId" Type="int" />
+          <Property Name="TransactionId" Type="varchar" MaxLength="100" />
+          <Property Name="PaymentId" Type="varchar" MaxLength="100" />
+          <Property Name="PaymentOrderId" Type="varchar" MaxLength="100" />
+          <Property Name="PaymentMode" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="usermaster">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="website_login">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FisrtName" Type="varchar" MaxLength="100" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="IsActive" Type="varchar" MaxLength="1" />
+          <Property Name="StoreId" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="sjb_androidModelStoreContainer">
+          <EntitySet Name="addressmaster" EntityType="Self.addressmaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="categorymaster" EntityType="Self.categorymaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="citymaster" EntityType="Self.citymaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="localitymaster" EntityType="Self.localitymaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="menumaster" EntityType="Self.menumaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="menusetupmaster" EntityType="Self.menusetupmaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="notificationmaster" EntityType="Self.notificationmaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="orderdetails" EntityType="Self.orderdetails" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="ordermaster" EntityType="Self.ordermaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="orderstatusmaster" EntityType="Self.orderstatusmaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="productmaster" EntityType="Self.productmaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="promocodemaster" EntityType="Self.promocodemaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="registrationmaster" EntityType="Self.registrationmaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="statemaster" EntityType="Self.statemaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="storemaster" EntityType="Self.storemaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="transactionmaster" EntityType="Self.transactionmaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="usermaster" EntityType="Self.usermaster" Schema="sjb_android" store:Type="Tables" />
+          <EntitySet Name="website_login" EntityType="Self.website_login" Schema="sjb_android" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sjb_androidModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="addressmaster">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompleteAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LandMark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LoginID" Type="Int32" />
+          <Property Name="LocalityId" Type="Int32" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="categorymaster">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StoreId" Type="Int32" />
+          <Property Name="MenuId" Type="Int32" />
+          <Property Name="CategoryDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="citymaster">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="StateId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="localitymaster">
+          <Key>
+            <PropertyRef Name="LocalityId" />
+          </Key>
+          <Property Name="LocalityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocalityName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StoreId1" Type="Int32" />
+          <Property Name="StoreId2" Type="Int32" />
+          <Property Name="StoreId3" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="menumaster">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MenuPrice" Type="Decimal" />
+          <Property Name="StoreId" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="menusetupmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menuid" Type="Int32" />
+          <Property Name="categoryid" Type="Int32" />
+          <Property Name="Productid" Type="Int32" />
+          <Property Name="createdon" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="notificationmaster">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NotificationMessage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsDeleted" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="orderdetail">
+          <Key>
+            <PropertyRef Name="OrderDetailsId" />
+          </Key>
+          <Property Name="OrderDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Quantity" Type="Decimal" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="ordermaster">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StoreId" Type="Int32" />
+          <Property Name="LoginId" Type="Int32" />
+          <Property Name="AddressId" Type="Int32" />
+          <Property Name="OrderStatusId" Type="Int32" />
+          <Property Name="TotalPrice" Type="Decimal" />
+          <Property Name="SpecialDiscount" Type="Decimal" />
+          <Property Name="GrandTotal" Type="Decimal" />
+          <Property Name="Discount" Type="Decimal" />
+          <Property Name="NetAmount" Type="Decimal" />
+          <Property Name="SubTotal" Type="Decimal" />
+          <Property Name="TotalGST" Type="Decimal" />
+          <Property Name="TotalDeliveryCharge" Type="Decimal" />
+          <Property Name="TranactionId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="orderstatusmaster">
+          <Key>
+            <PropertyRef Name="OrderStatusId" />
+          </Key>
+          <Property Name="OrderStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderStatus" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="productmaster">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="UnitPrice" Type="Decimal" />
+          <Property Name="GST" Type="Decimal" />
+          <Property Name="Discount" Type="Decimal" />
+          <Property Name="TaxType" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="UOM" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="HSN" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="SweetsReset" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ProductDetails" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryCharge" Type="Decimal" />
+          <Property Name="Lock" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="promocodemaster">
+          <Key>
+            <PropertyRef Name="PromoCodeId" />
+          </Key>
+          <Property Name="PromoCodeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PromoCode" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Discount" Type="Decimal" />
+          <Property Name="LoginId" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="registrationmaster">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="LoginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="Int32" />
+          <Property Name="OTP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilePictureURL" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="FavouriteStoreId" Type="Int32" />
+          <Property Name="FbToken" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DeviceId" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="statemaster">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="storemaster">
+          <Key>
+            <PropertyRef Name="StoreId" />
+          </Key>
+          <Property Name="StoreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="StorePhoneNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="StoreEmailId" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="StoreAddress" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="LocalityId" Type="Int32" />
+          <Property Name="OpeningTime" Type="DateTime" />
+          <Property Name="ClosingTime" Type="DateTime" />
+          <Property Name="StoreStatus" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="transactionmaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginId" Type="Int32" />
+          <Property Name="OrderId" Type="Int32" />
+          <Property Name="OrderNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="StoreId" Type="Int32" />
+          <Property Name="TransactionId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentOrderId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentMode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="usermaster">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="website_login">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FisrtName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="StoreId" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="sjb_androidEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="addressmasters" EntityType="Self.addressmaster" />
+          <EntitySet Name="categorymasters" EntityType="Self.categorymaster" />
+          <EntitySet Name="citymasters" EntityType="Self.citymaster" />
+          <EntitySet Name="localitymasters" EntityType="Self.localitymaster" />
+          <EntitySet Name="menumasters" EntityType="Self.menumaster" />
+          <EntitySet Name="menusetupmasters" EntityType="Self.menusetupmaster" />
+          <EntitySet Name="notificationmasters" EntityType="Self.notificationmaster" />
+          <EntitySet Name="orderdetails" EntityType="Self.orderdetail" />
+          <EntitySet Name="ordermasters" EntityType="Self.ordermaster" />
+          <EntitySet Name="orderstatusmasters" EntityType="Self.orderstatusmaster" />
+          <EntitySet Name="productmasters" EntityType="Self.productmaster" />
+          <EntitySet Name="promocodemasters" EntityType="Self.promocodemaster" />
+          <EntitySet Name="registrationmasters" EntityType="Self.registrationmaster" />
+          <EntitySet Name="statemasters" EntityType="Self.statemaster" />
+          <EntitySet Name="storemasters" EntityType="Self.storemaster" />
+          <EntitySet Name="transactionmasters" EntityType="Self.transactionmaster" />
+          <EntitySet Name="usermasters" EntityType="Self.usermaster" />
+          <EntitySet Name="website_login" EntityType="Self.website_login" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sjb_androidModelStoreContainer" CdmEntityContainer="sjb_androidEntities">
+          <EntitySetMapping Name="addressmasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.addressmaster">
+              <MappingFragment StoreEntitySet="addressmaster">
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="CompleteAddress" ColumnName="CompleteAddress" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="LandMark" ColumnName="LandMark" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="LocalityId" ColumnName="LocalityId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categorymasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.categorymaster">
+              <MappingFragment StoreEntitySet="categorymaster">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="CategoryDescription" ColumnName="CategoryDescription" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="citymasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.citymaster">
+              <MappingFragment StoreEntitySet="citymaster">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="localitymasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.localitymaster">
+              <MappingFragment StoreEntitySet="localitymaster">
+                <ScalarProperty Name="LocalityId" ColumnName="LocalityId" />
+                <ScalarProperty Name="LocalityName" ColumnName="LocalityName" />
+                <ScalarProperty Name="StoreId1" ColumnName="StoreId1" />
+                <ScalarProperty Name="StoreId2" ColumnName="StoreId2" />
+                <ScalarProperty Name="StoreId3" ColumnName="StoreId3" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menumasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.menumaster">
+              <MappingFragment StoreEntitySet="menumaster">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuPrice" ColumnName="MenuPrice" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menusetupmasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.menusetupmaster">
+              <MappingFragment StoreEntitySet="menusetupmaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="menuid" ColumnName="menuid" />
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="Productid" ColumnName="Productid" />
+                <ScalarProperty Name="createdon" ColumnName="createdon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notificationmasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.notificationmaster">
+              <MappingFragment StoreEntitySet="notificationmaster">
+                <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+                <ScalarProperty Name="NotificationMessage" ColumnName="NotificationMessage" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderdetails">
+            <EntityTypeMapping TypeName="sjb_androidModel.orderdetail">
+              <MappingFragment StoreEntitySet="orderdetails">
+                <ScalarProperty Name="OrderDetailsId" ColumnName="OrderDetailsId" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ordermasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.ordermaster">
+              <MappingFragment StoreEntitySet="ordermaster">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="SpecialDiscount" ColumnName="SpecialDiscount" />
+                <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="TotalGST" ColumnName="TotalGST" />
+                <ScalarProperty Name="TotalDeliveryCharge" ColumnName="TotalDeliveryCharge" />
+                <ScalarProperty Name="TranactionId" ColumnName="TranactionId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderstatusmasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.orderstatusmaster">
+              <MappingFragment StoreEntitySet="orderstatusmaster">
+                <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productmasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.productmaster">
+              <MappingFragment StoreEntitySet="productmaster">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="TaxType" ColumnName="TaxType" />
+                <ScalarProperty Name="UOM" ColumnName="UOM" />
+                <ScalarProperty Name="HSN" ColumnName="HSN" />
+                <ScalarProperty Name="SweetsReset" ColumnName="SweetsReset" />
+                <ScalarProperty Name="ProductDetails" ColumnName="ProductDetails" />
+                <ScalarProperty Name="DeliveryCharge" ColumnName="DeliveryCharge" />
+                <ScalarProperty Name="Lock" ColumnName="Lock" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="promocodemasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.promocodemaster">
+              <MappingFragment StoreEntitySet="promocodemaster">
+                <ScalarProperty Name="PromoCodeId" ColumnName="PromoCodeId" />
+                <ScalarProperty Name="PromoCode" ColumnName="PromoCode" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registrationmasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.registrationmaster">
+              <MappingFragment StoreEntitySet="registrationmaster">
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="OTP" ColumnName="OTP" />
+                <ScalarProperty Name="ProfilePictureURL" ColumnName="ProfilePictureURL" />
+                <ScalarProperty Name="FavouriteStoreId" ColumnName="FavouriteStoreId" />
+                <ScalarProperty Name="FbToken" ColumnName="FbToken" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="statemasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.statemaster">
+              <MappingFragment StoreEntitySet="statemaster">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="storemasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.storemaster">
+              <MappingFragment StoreEntitySet="storemaster">
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="StorePhoneNumber" ColumnName="StorePhoneNumber" />
+                <ScalarProperty Name="StoreEmailId" ColumnName="StoreEmailId" />
+                <ScalarProperty Name="StoreAddress" ColumnName="StoreAddress" />
+                <ScalarProperty Name="LocalityId" ColumnName="LocalityId" />
+                <ScalarProperty Name="OpeningTime" ColumnName="OpeningTime" />
+                <ScalarProperty Name="ClosingTime" ColumnName="ClosingTime" />
+                <ScalarProperty Name="StoreStatus" ColumnName="StoreStatus" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transactionmasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.transactionmaster">
+              <MappingFragment StoreEntitySet="transactionmaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="PaymentOrderId" ColumnName="PaymentOrderId" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usermasters">
+            <EntityTypeMapping TypeName="sjb_androidModel.usermaster">
+              <MappingFragment StoreEntitySet="usermaster">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="website_login">
+            <EntityTypeMapping TypeName="sjb_androidModel.website_login">
+              <MappingFragment StoreEntitySet="website_login">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FisrtName" ColumnName="FisrtName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
